@@ -1,0 +1,61 @@
+Beginning AutoGluon training...
+AutoGluon will save models to 'e:\Openclassroom\AI_Engineer\Projet_09\work_folder\AutogluonModels\ag-20250130_150023'
+=================== System Info ===================
+AutoGluon Version:  1.2
+Python Version:     3.9.13
+Operating System:   Windows
+Platform Machine:   AMD64
+Platform Version:   10.0.26100
+CPU Count:          24
+GPU Count:          0
+Memory Avail:       47.36 GB / 63.14 GB (75.0%)
+Disk Space Avail:   1858.73 GB / 5589.01 GB (33.3%)
+===================================================
+Setting presets to: best_quality
+
+Fitting with arguments:
+{'enable_ensemble': True,
+ 'eval_metric': MAPE,
+ 'hyperparameters': {'ARIMA': {},
+                     'Chronos': [{'ag_args': {'name_suffix': 'ZeroShot'},
+                                  'model_path': 'bolt_base'}]},
+ 'known_covariates_names': [],
+ 'num_val_windows': 2,
+ 'prediction_length': 29,
+ 'quantile_levels': [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+ 'random_seed': 123,
+ 'refit_every_n_windows': 1,
+ 'refit_full': False,
+ 'skip_model_selection': False,
+ 'target': 'target',
+ 'verbosity': 2}
+
+Inferred time series frequency: 'MS'
+Provided train_data has 115 rows, 1 time series. Median time series length is 115 (min=115, max=115). 
+
+Provided data contains following columns:
+	target: 'target'
+
+AutoGluon will gauge predictive performance using evaluation metric: 'MAPE'
+	This metric's sign has been flipped to adhere to being higher_is_better. The metric score can be multiplied by -1 to get the metric value.
+===================================================
+
+Starting training. Start time is 2025-01-30 16:00:23
+Models that will be trained: ['ChronosZeroShot[bolt_base]', 'ARIMA']
+Training timeseries model ChronosZeroShot[bolt_base]. 
+	-0.0757       = Validation score (-MAPE)
+	3.41    s     = Training runtime
+	1.30    s     = Validation (prediction) runtime
+Training timeseries model ARIMA. 
+	-0.2162       = Validation score (-MAPE)
+	2.24    s     = Training runtime
+	1.90    s     = Validation (prediction) runtime
+Fitting simple weighted ensemble.
+	Ensemble weights: {'ChronosZeroShot[bolt_base]': 1.0}
+	-0.0757       = Validation score (-MAPE)
+	0.15    s     = Training runtime
+	1.30    s     = Validation (prediction) runtime
+Training complete. Models trained: ['ChronosZeroShot[bolt_base]', 'ARIMA', 'WeightedEnsemble']
+Total runtime: 9.02 s
+Best model: ChronosZeroShot[bolt_base]
+Best model score: -0.0757
