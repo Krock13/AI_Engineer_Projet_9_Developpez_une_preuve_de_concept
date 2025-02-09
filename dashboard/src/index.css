@@ -1,0 +1,114 @@
+/* Réinitialisation globale */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Palette de couleurs */
+/* Mode Sombre (par défaut) */
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #8a62d5;
+  --text-color: #ffffff;
+  --paragraph-color: #56585e;
+  --background-color: #1b1a1a;
+}
+
+/* Mode Clair */
+.light-mode {
+  --primary-color: #007bff;
+  --secondary-color: #8a62d5;
+  --text-color: #0a0a0a;
+  --paragraph-color: #939398;
+  --background-color: #ffffff;
+}
+
+/* Styles généraux */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Sections */
+section {
+  padding-top: 120px;
+  padding-bottom: 0;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Typographie */
+h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1rem;
+  max-width: 800px;
+  line-height: 1.5;
+  margin: 0 auto;
+}
+
+/* Boutons */
+button {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 19px 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 28px;
+  border-width: 1px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  margin: 10px;
+  width: 194px;
+  text-align: center;
+  display: inline-block;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* 🔹 Media query pour les écrans ≤ 920px */
+@media screen and (max-width: 920px) {
+  button {
+    width: 164px;
+  }
+}

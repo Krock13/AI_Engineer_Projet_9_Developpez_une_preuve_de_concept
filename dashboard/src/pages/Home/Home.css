@@ -1,0 +1,142 @@
+/* Conteneur principal */
+.home-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Titre principal */
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+/* Cartes contenant les graphiques */
+.card {
+  width: 100%;
+  padding: 20px;
+  background-color: var(--background-color);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+/* Ajout d'une animation au survol */
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* Prédiction */
+.prediction-section {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--background-color);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 100%;
+}
+
+/* Champ de sélection de date */
+.date-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid var(--paragraph-color);
+  border-radius: 5px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  outline: none;
+  transition: 0.3s ease;
+}
+
+/* Focus sur le champ de date */
+.date-input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Bouton */
+button {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Style général pour les tableaux */
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.container-table {
+  display: flex;
+  justify-content: center;
+}
+
+/* Bordures et espacements */
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 1.4rem;
+}
+
+/* Style des en-têtes */
+table th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+
+/* Lignes alternées */
+table tbody tr:nth-child(even) {
+  background-color: var(--background-color);
+  font-weight: bold;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color: var(--paragraph-color);
+  font-weight: bold;
+}
+
+table tbody tr:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Alignement des titres de section */
+.table-section h3 {
+  margin: 10px 0;
+  color: var(--text-color);
+}
+
+/* Media Queries pour s'adapter aux écrans plus petits */
+@media screen and (max-width: 768px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .home-container {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}

@@ -1,0 +1,48 @@
+Beginning AutoGluon training...
+AutoGluon will save models to 'e:\Openclassroom\AI_Engineer\Projet_09\work_folder\AutogluonModels\ag-20250207_135231'
+=================== System Info ===================
+AutoGluon Version:  1.2
+Python Version:     3.9.13
+Operating System:   Windows
+Platform Machine:   AMD64
+Platform Version:   10.0.26100
+CPU Count:          24
+GPU Count:          0
+Memory Avail:       49.74 GB / 63.14 GB (78.8%)
+Disk Space Avail:   1960.36 GB / 5589.01 GB (35.1%)
+===================================================
+Setting presets to: bolt_base
+
+Fitting with arguments:
+{'enable_ensemble': True,
+ 'eval_metric': WQL,
+ 'hyperparameters': {'Chronos': {'model_path': 'bolt_base'}},
+ 'known_covariates_names': [],
+ 'num_val_windows': 1,
+ 'prediction_length': 24,
+ 'quantile_levels': [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+ 'random_seed': 123,
+ 'refit_every_n_windows': 1,
+ 'refit_full': False,
+ 'skip_model_selection': True,
+ 'target': 'target',
+ 'verbosity': 2}
+
+Inferred time series frequency: 'MS'
+Provided train_data has 144 rows, 1 time series. Median time series length is 144 (min=144, max=144). 
+
+Provided data contains following columns:
+	target: 'target'
+
+AutoGluon will gauge predictive performance using evaluation metric: 'WQL'
+	This metric's sign has been flipped to adhere to being higher_is_better. The metric score can be multiplied by -1 to get the metric value.
+===================================================
+
+Starting training. Start time is 2025-02-07 14:52:31
+Models that will be trained: ['Chronos[bolt_base]']
+Training timeseries model Chronos[bolt_base]. 
+	6.69    s     = Training runtime
+Training complete. Models trained: ['Chronos[bolt_base]']
+Total runtime: 6.81 s
+Best model: Chronos[bolt_base]
+Model not specified in predict, will default to the model with the best validation score: Chronos[bolt_base]
