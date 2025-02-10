@@ -22,14 +22,13 @@ logger.info("Démarrage de l'API...")
 # Configuration CORS avec logs de test
 logger.info("Configuration CORS en cours...")
 
-origins = [
-    "http://localhost:5173",  # Dashboard en local
-    "https://appproof-crbfdufzeth9drev.francecentral-01.azurewebsites.net",  # URL en production
-]
+origins = ["*"]
 
+# Configuration CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_origin_regex=".*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
