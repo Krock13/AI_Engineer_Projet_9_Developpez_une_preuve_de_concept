@@ -17,4 +17,4 @@ RUN pip install --no-cache-dir -r /app/api/requirements.txt
 EXPOSE 8000
 
 # Commande par défaut
-CMD ["python", "/app/api/app.py"]
+CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0", "--port", "8000"]
