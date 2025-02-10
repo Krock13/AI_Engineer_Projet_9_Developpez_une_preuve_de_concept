@@ -48,7 +48,8 @@ function Forecast() {
   const [loading, setLoading] = useState(false);
 
   async function handlePrediction() {
-    const URL = "http://127.0.0.1:5000/predict";
+    const URL =
+      "https://appproof-crbfdufzeth9drev.francecentral-01.azurewebsites.net/predict";
 
     if (!startDate || !endDate) {
       alert("Sélectionnez une date de début et une date de fin !");

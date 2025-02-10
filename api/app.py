@@ -19,6 +19,20 @@ app = FastAPI()
 
 logger.info("Démarrage de l'API...")
 
+# Configuration CORS
+origins = [
+    "http://localhost:5173",
+    "https://appproof-crbfdufzeth9drev.francecentral-01.azurewebsites.net/",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Chargement du modèle
 MODEL_PATH = "./model"
 predictor = TimeSeriesPredictor.load(MODEL_PATH)
