@@ -32,21 +32,53 @@ interface Prediction {
   "0.8": number;
 }
 
-function Forecast() {
-  const dateOptions = [];
-  const currentDate = new Date("2015-01-01");
-  const end = new Date("2016-12-01");
+interface ForecastData {
+  dates: string[];
+  sales: number[];
+  mean: number;
+  median: number;
+  min: number;
+  max: number;
+  stdDev: number;
+  kdeValues: number[];
+  salesBins: string[];
+  salesFrequencies: number[];
+}
 
-  while (currentDate <= end) {
-    dateOptions.push(currentDate.toISOString().split("T")[0]);
-    currentDate.setMonth(currentDate.getMonth() + 1);
+interface ForecastProps {
+  data: ForecastData;
+}
+
+export type { ForecastData };
+
+const Forecast: React.FC<ForecastProps> = ({ data }) => {
+  if (import.meta.env.MODE === "development") {
+    console.log("Données reçues dans Forecast :", data);
   }
+  // Génération des options de dates
+  const generateDateOptions = () => {
+    const options: string[] = [];
+    const startDate = new Date("2015-01-01");
+    const endDate = new Date("2016-12-01");
 
+    for (
+      let d = new Date(startDate);
+      d <= endDate;
+      d = new Date(d.setMonth(d.getMonth() + 1))
+    ) {
+      options.push(d.toISOString().split("T")[0]);
+    }
+
+    return options;
+  };
+
+  const dateOptions = generateDateOptions();
   const [startDate, setStartDate] = useState(dateOptions[0]);
   const [endDate, setEndDate] = useState(dateOptions[dateOptions.length - 1]);
   const [predictions, setPredictions] = useState<Prediction[]>([]);
   const [loading, setLoading] = useState(false);
 
+  // Gestion de la prédiction
   async function handlePrediction() {
     const URL =
       "https://appproof-crbfdufzeth9drev.francecentral-01.azurewebsites.net/predict";
@@ -85,32 +117,31 @@ function Forecast() {
     }
   }
 
+  // Configuration des données pour Chart.js
   const chartData = {
     labels: predictions.map((p) => p.timestamp),
     datasets: [
-      // Ligne verte pour "mean"
       {
         label: "Prédiction (mean)",
-        data: predictions.map((p) => parseFloat(p.mean.toFixed(2))), // Convertir en nombre
+        data: predictions.map((p) => parseFloat(p.mean.toFixed(2))),
         borderColor: "green",
         backgroundColor: "transparent",
         fill: false,
       },
-      // Zone orange claire (0.2 à 0.8)
       {
         label: "Intervalle de confiance",
-        data: predictions.map((p) => parseFloat(p["0.8"].toFixed(2))), // Convertir en nombre
+        data: predictions.map((p) => parseFloat(p["0.8"].toFixed(2))),
         fill: 1,
         backgroundColor: "rgba(255,165,0,0.3)",
         borderColor: "transparent",
       },
       {
-        data: predictions.map((p) => parseFloat(p["0.2"].toFixed(2))), // Convertir en nombre
+        data: predictions.map((p) => parseFloat(p["0.2"].toFixed(2))),
         fill: 1,
         backgroundColor: "rgba(255,165,0,0.3)",
         borderColor: "transparent",
-        label: undefined, // Supprimer de la légende
-        showLine: false, // Pas de ligne affichée
+        label: undefined,
+        showLine: false,
       },
     ],
   };
@@ -120,7 +151,6 @@ function Forecast() {
       legend: {
         labels: {
           filter: (legendItem: { text?: string }) => {
-            // Exclure les datasets sans label
             return legendItem.text !== undefined;
           },
         },
@@ -181,6 +211,6 @@ function Forecast() {
       </div>
     </Card>
   );
-}
+};
 
 export default Forecast;

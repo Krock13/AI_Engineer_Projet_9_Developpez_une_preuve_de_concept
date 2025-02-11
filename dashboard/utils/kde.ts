@@ -11,7 +11,10 @@ export function gaussianKde(data: number[], xPoints: number[]): number[] {
     return [];
   }
 
-  const bandwidth = 1.06 * math.std(data) * Math.pow(data.length, -1 / 5); // Règle de Silverman
+  const bandwidth =
+    1.06 *
+    (math.std(data) as unknown as number) *
+    Math.pow(data.length, -1 / 5); // Règle de Silverman
   const kdeValues = xPoints.map((x) =>
     math.mean(
       data.map(
