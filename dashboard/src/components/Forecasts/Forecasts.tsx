@@ -13,6 +13,7 @@ import {
   Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import "./Forecasts.css";
 
 ChartJS.register(
   CategoryScale,
@@ -147,11 +148,61 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
   };
 
   const chartOptions = {
+    responsive: true,
     plugins: {
+      title: {
+        display: true,
+        text: "Prédictions de ventes",
+        font: {
+          size: 18,
+          weight: "bold",
+        },
+      },
       legend: {
         labels: {
+          font: {
+            size: 14,
+          },
+          color: "#007BFF",
           filter: (legendItem: { text?: string }) => {
             return legendItem.text !== undefined;
+          },
+        },
+      },
+      tooltip: {
+        bodyFont: {
+          size: 16,
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Dates",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
+        },
+        ticks: {
+          font: {
+            size: 14,
+          },
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: "Valeurs prédites",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
+        },
+        ticks: {
+          font: {
+            size: 14,
           },
         },
       },
@@ -161,32 +212,45 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
   return (
     <Card>
       <h2>🔮 Prédictions</h2>
-      <div>
-        <label>Date de début :</label>
-        <select
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        >
-          {dateOptions.map((date) => (
-            <option key={date} value={date}>
-              {date}
-            </option>
-          ))}
-        </select>
+      <div className="forecast-container">
+        <div className="forecast-form">
+          <label htmlFor="startDate">Date de début :</label>
+          <select
+            id="startDate"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          >
+            {dateOptions.map((date) => (
+              <option key={date} value={date}>
+                {date}
+              </option>
+            ))}
+          </select>
 
-        <label>Date de fin :</label>
-        <select value={endDate} onChange={(e) => setEndDate(e.target.value)}>
-          {dateOptions.map((date) => (
-            <option key={date} value={date}>
-              {date}
-            </option>
-          ))}
-        </select>
+          <label htmlFor="endDate">Date de fin :</label>
+          <select
+            id="endDate"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          >
+            {dateOptions.map((date) => (
+              <option key={date} value={date}>
+                {date}
+              </option>
+            ))}
+          </select>
 
-        <Button onClick={handlePrediction} disabled={loading}>
-          {loading ? "Chargement..." : "Prédire"}
-        </Button>
-
+          <Button
+            onClick={handlePrediction}
+            disabled={loading}
+            aria-label={
+              loading ? "Chargement de la prédiction" : "Lancer la prédiction"
+            }
+            title={loading ? "Chargement..." : "Prédire les ventes"}
+          >
+            {loading ? "Chargement..." : "Prédire"}
+          </Button>
+        </div>
         {predictions.length > 0 && (
           <>
             <table>
@@ -205,7 +269,17 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
                 ))}
               </tbody>
             </table>
-            <Line data={chartData} options={chartOptions} />
+            <div
+              role="img"
+              aria-label="Graphique de prédiction des ventes"
+              aria-describedby="chart-description"
+            >
+              <Line data={chartData} options={chartOptions} />
+            </div>
+            <p id="chart-description">
+              Ce graphique représente les prévisions de ventes avec une moyenne
+              et un intervalle de confiance.
+            </p>
           </>
         )}
       </div>

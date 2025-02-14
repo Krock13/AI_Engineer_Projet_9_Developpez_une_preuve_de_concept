@@ -5,3 +5,44 @@
   margin: auto;
   width: 100%;
 }
+
+/* 🌟 Style général */
+.forecast-container {
+  padding: 20px;
+}
+
+/* 🏷️ Style des labels */
+.forecast-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.2rem; /* Taille confortable et lisible */
+  font-weight: 600;
+}
+
+/* 📅 Style des selects */
+.forecast-container select {
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.forecast-container select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.forecast-form {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#chart-description {
+  margin-top: 20px;
+}

@@ -19,19 +19,21 @@ function Header() {
       <h1 className="title-header">Dashboard - Analyse et Prédictions</h1>
       {/* Switch mode dark/light */}
       <div className="theme-switch">
-        <label className="switch">
+        <label htmlFor="themeToggle" className="switch">
+          <span className="sr-only">
+            Basculer entre le mode clair et sombre
+          </span>
           <input
+            id="themeToggle"
             type="checkbox"
             onChange={() => setTheme(theme === "dark" ? "light" : "dark")}
             checked={theme === "light"}
           />
           <span className="slider"></span>
         </label>
-        {theme === "dark" ? (
-          <span className="icon">🌙</span>
-        ) : (
-          <span className="icon">☀️</span>
-        )}
+        <span className="icon" aria-hidden="true">
+          {theme === "dark" ? "🌙" : "☀️"}
+        </span>
       </div>
     </header>
   );

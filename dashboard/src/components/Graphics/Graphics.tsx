@@ -2,6 +2,7 @@ import { Line, Bar } from "react-chartjs-2";
 import Card from "../ui/Card/Card";
 import "../../../utils/chartConfig";
 import { ChartData } from "chart.js";
+import "./Graphics.css";
 
 interface GraphicsProps {
   data: {
@@ -31,7 +32,56 @@ const Graphics: React.FC<GraphicsProps> = ({ data }) => {
               },
             ],
           }}
-          options={{ responsive: true }}
+          options={{
+            responsive: true,
+            plugins: {
+              legend: {
+                labels: {
+                  font: {
+                    size: 16, // Taille minimale 14
+                  },
+                  color: "#007BFF",
+                },
+              },
+              tooltip: {
+                bodyFont: {
+                  size: 16,
+                },
+              },
+            },
+            scales: {
+              x: {
+                title: {
+                  display: true,
+                  text: "Dates",
+                  font: {
+                    size: 14,
+                    weight: "bold",
+                  },
+                },
+                ticks: {
+                  font: {
+                    size: 14, // Taille des étiquettes conforme
+                  },
+                },
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: "Nombre de ventes",
+                  font: {
+                    size: 14,
+                    weight: "bold",
+                  },
+                },
+                ticks: {
+                  font: {
+                    size: 12,
+                  },
+                },
+              },
+            },
+          }}
         />
       </Card>
 
@@ -48,7 +98,7 @@ const Graphics: React.FC<GraphicsProps> = ({ data }) => {
                   backgroundColor: "rgba(0, 0, 255, 0.5)",
                   barPercentage: 1.0,
                   yAxisID: "y",
-                  type: "bar" as const, // On force bien ce dataset à être un "bar"
+                  type: "bar" as const,
                 },
                 {
                   label: "KDE",
@@ -57,7 +107,7 @@ const Graphics: React.FC<GraphicsProps> = ({ data }) => {
                   borderWidth: 2,
                   fill: false,
                   yAxisID: "y1",
-                  type: "line" as const, // On force bien ce dataset à être une "line"
+                  type: "line" as const,
                 },
               ],
             } as ChartData<"bar", number[], string>
@@ -65,9 +115,18 @@ const Graphics: React.FC<GraphicsProps> = ({ data }) => {
           options={{
             responsive: true,
             plugins: {
-              title: {
-                display: true,
-                text: "Distribution des ventes",
+              legend: {
+                labels: {
+                  font: {
+                    size: 16,
+                  },
+                  color: "#007BFF",
+                },
+              },
+              tooltip: {
+                bodyFont: {
+                  size: 16,
+                },
               },
             },
             scales: {
@@ -75,14 +134,30 @@ const Graphics: React.FC<GraphicsProps> = ({ data }) => {
                 title: {
                   display: true,
                   text: "Nombre de camions vendus",
+                  font: {
+                    size: 14,
+                    weight: "bold",
+                  },
+                },
+                ticks: {
+                  font: {
+                    size: 14,
+                  },
                 },
               },
               y: {
-                beginAtZero: true,
-                position: "left",
                 title: {
                   display: true,
                   text: "Fréquence",
+                  font: {
+                    size: 14,
+                    weight: "bold",
+                  },
+                },
+                ticks: {
+                  font: {
+                    size: 12,
+                  },
                 },
               },
               y1: {
@@ -91,6 +166,15 @@ const Graphics: React.FC<GraphicsProps> = ({ data }) => {
                 title: {
                   display: true,
                   text: "Densité KDE",
+                  font: {
+                    size: 14,
+                    weight: "bold",
+                  },
+                },
+                ticks: {
+                  font: {
+                    size: 12,
+                  },
                 },
                 grid: {
                   drawOnChartArea: false,
