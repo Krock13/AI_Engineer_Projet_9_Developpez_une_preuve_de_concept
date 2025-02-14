@@ -155,7 +155,7 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
         text: "Prédictions de ventes",
         font: {
           size: 18,
-          weight: "bold",
+          weight: 700,
         },
       },
       legend: {
@@ -182,7 +182,7 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
           text: "Dates",
           font: {
             size: 14,
-            weight: "bold",
+            weight: 700,
           },
         },
         ticks: {
@@ -197,7 +197,7 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
           text: "Valeurs prédites",
           font: {
             size: 14,
-            weight: "bold",
+            weight: 700,
           },
         },
         ticks: {
